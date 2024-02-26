@@ -1,0 +1,28 @@
+<div *ngIf="selectedMovie">
+  <h2>
+      {{selectedMovie.title | uppercase}} was selected
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<h2>Movies</h2>
+<button (click)="addNewMovie()">Add New Movie</button>
+<button (click)="deleteMovie()">Delete</button>
+<button (click)="getMoviesOrderedByTitleAsc()">Order Asc</button>
+<button (click)="getMoviesOrderedByTitleDesc()">Order Desc</button>
+<br><br>
+<div>
+  <input type="text" [(ngModel)]="searchTitle" placeholder="Search by Title">
+  <button (click)="findMoviesByTitle(searchTitle)">Search</button>
+</div>
+<br>
+
+<ul class="movies">
+  <li *ngFor="let movie of movies "
+      [class.selected]="movie === selectedMovie"
+      (click)="onSelect(movie)">
+      {{movie.id}}. {{movie.title}}
+  </li>
+</ul>
+
+

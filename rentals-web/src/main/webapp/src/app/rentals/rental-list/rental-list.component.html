@@ -1,0 +1,25 @@
+<div *ngIf="selectedRental">
+  <h2>
+      Rental ID #{{selectedRental.id }} was selected
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<h2>Rentals</h2>
+<button (click)="addNewRental()">Add New Rental</button>
+<button (click)="deleteRental()">Delete</button>
+<button (click)="getRentalsOrderedByDateAsc()">Order Asc</button>
+<button (click)="getRentalsOrderedByDateDesc()">OrderDesc</button>
+<br><br>
+<div>
+  <input type="text" [(ngModel)]="searchedClientId" placeholder="Client ID">
+  <button (click)="findRentalsByClientId(searchedClientId)">Search by Client ID</button>
+</div>
+<br>
+<ul class="rentals">
+  <li *ngFor="let rental of rentals "
+      [class.selected]="rental === selectedRental"
+      (click)="onSelect(rental)">
+      {{rental.id}}. Client: {{rental.clientId}}  |  Movie: {{rental.movieId}}  |  Date:{{rental.rentalDate}}
+  </li>
+</ul>

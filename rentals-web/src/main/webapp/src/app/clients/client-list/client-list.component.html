@@ -1,0 +1,26 @@
+<div *ngIf="selectedClient">
+  <h2>
+      {{selectedClient.firstName | uppercase}} {{selectedClient.lastName | uppercase}} was selected
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<h2>Clients</h2>
+<button (click)="addNewClient()">Add New Client</button>
+<button (click)="deleteClient()">Delete</button>
+<button (click)="getClientsOrderedByFirstNameAsc()">Order Asc</button>
+<button (click)="getClientsOrderedByFirstNameDesc()">Order Desc</button>
+<br><br>
+<div>
+  <input type="text" [(ngModel)]="searchName" placeholder="Search by First Name">
+  <button (click)="findClientsByFirstName(searchName)">Search</button>
+</div>
+<br>
+
+<ul class="clients">
+  <li *ngFor="let client of clients"
+      [class.selected]="client === selectedClient"
+      (click)="onSelect(client)">
+      {{client.id}}. {{client.firstName}} {{client.lastName}}
+  </li>
+</ul>
